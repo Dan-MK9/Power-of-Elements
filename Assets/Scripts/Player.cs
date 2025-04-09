@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     float maxJumpHeight = 2f;
     float timeToMaxHeight = 0.5f;
 
+    public bool podeMover = true;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();    
@@ -28,6 +30,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!podeMover) return;
+
         float forwardInput = Input.GetAxisRaw("Vertical");
         float strafeInput = Input.GetAxisRaw("Horizontal");
 

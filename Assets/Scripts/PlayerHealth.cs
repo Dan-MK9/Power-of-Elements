@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -14,6 +13,10 @@ public class PlayerHealth : MonoBehaviour
     public Image[] coracoes;
     public Sprite coracaoCheio;
     public Sprite coracaoVazio;
+
+    public bool podeMover = true;
+
+    public GameObject gameOverPanel;
 
     void Start()
     {
@@ -59,11 +62,25 @@ public class PlayerHealth : MonoBehaviour
     void Morreu ()
         {
             Debug.Log("O jogador morreu!");
-            FindObjectOfType<FadeController>().FadeOutAndRestart();
-        }
+
+            FirstPersonalCamera cameraLook = FindAnyObjectByType<FirstPersonalCamera>();
+            if (cameraLook != null)
+            {
+                cameraLook.podeOlhar = false;
+            }
+
+            gameOverPanel.SetActive(true);
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                player.GetComponent<Player>().podeMover = false;
+            }
+    }
 
     void Update()
     {
+        if (!podeMover) return;
+
         if (Input.GetKeyDown(KeyCode.H))
         {
             TomarDano(1);

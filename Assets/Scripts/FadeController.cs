@@ -18,7 +18,7 @@ public class FadeController : MonoBehaviour
         StartCoroutine(FadeOutAndLoad());
     }
 
-    IEnumerable FadeIn()
+    IEnumerator FadeIn()
     {
         float t = 1f;
         while (t > 0f)
@@ -29,13 +29,13 @@ public class FadeController : MonoBehaviour
         }
     }
 
-    IEnumerable FadeOutAndLoad()
+    IEnumerator FadeOutAndLoad()
     {
         float t = 0f;
         while (t < 1f)
         {
             t += Time.deltaTime / fadeDuration;
-            SetAlpha( t );
+            SetAlpha(t);
             yield return null;
         }
 

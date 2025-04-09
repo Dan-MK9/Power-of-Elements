@@ -5,8 +5,10 @@ public class FirstPersonalCamera : MonoBehaviour
     public Transform characterBody;
     public Transform characterHead;
 
-    float sensitivityX = 0.8f;
-    float sensitivityY = 0.8f;
+    public bool podeOlhar = true;
+
+    float sensitivityX = 1f;
+    float sensitivityY = 1f;
 
     float rotationX = 0;
     float rotationY = 0;
@@ -32,6 +34,8 @@ public class FirstPersonalCamera : MonoBehaviour
 
     void Update()
     {
+        if (!podeOlhar) return;
+
         float verticalDelta = Input.GetAxisRaw("Mouse Y") * sensitivityY;
         float horizontalDelta = Input.GetAxisRaw("Mouse X") * sensitivityX;
 
