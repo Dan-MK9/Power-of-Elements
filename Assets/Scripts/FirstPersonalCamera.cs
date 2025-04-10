@@ -7,8 +7,8 @@ public class FirstPersonalCamera : MonoBehaviour
 
     public bool podeOlhar = true;
 
-    float sensitivityX = 1f;
-    float sensitivityY = 1f;
+    float sensitivityX = 3f;
+    float sensitivityY = 3f;
 
     float rotationX = 0;
     float rotationY = 0;
@@ -24,7 +24,7 @@ public class FirstPersonalCamera : MonoBehaviour
 
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void LateUpdate()

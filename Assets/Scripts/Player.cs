@@ -3,6 +3,7 @@ using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
+    public float velocidade = 5f;
 
     CharacterController controller;
 
@@ -35,8 +36,8 @@ public class Player : MonoBehaviour
         float forwardInput = Input.GetAxisRaw("Vertical");
         float strafeInput = Input.GetAxisRaw("Horizontal");
 
-        forward = forwardInput * forwardSpeed * transform.forward;
-        strafe = strafeInput * strafeSpeed * transform.right;
+        forward = forwardInput * velocidade * transform.forward;
+        strafe = strafeInput * velocidade * transform.right;
 
         vertical += gravity * Time.deltaTime * Vector3.up;
 

@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TomarDano(int dano)
     {
+        Debug.Log("Tomou dano!");
         vidaAtual -= dano;
         vidaAtual = Mathf.Clamp(vidaAtual, 0, vidaMax);
 
@@ -61,6 +62,8 @@ public class PlayerHealth : MonoBehaviour
 
     void Morreu ()
         {
+
+            Cursor.lockState = CursorLockMode.None ;
             Debug.Log("O jogador morreu!");
 
             FirstPersonalCamera cameraLook = FindAnyObjectByType<FirstPersonalCamera>();
