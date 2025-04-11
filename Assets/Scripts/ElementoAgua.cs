@@ -5,7 +5,7 @@ using UnityEngine;
 public class ElementoAgua : MonoBehaviour
 {
     public int dano = 1;
-    public float intervaloDano = 3f;
+    public float intervaloDano = 1.5f;
     public float slowDuration = 3f;
     public float slowMultiplier = 0.5f;
 
