@@ -61,12 +61,10 @@ public class PlayerHealth : MonoBehaviour
         }
 
     void Morreu ()
-        {
+    {
+        Cursor.lockState = CursorLockMode.None ;
 
-            Cursor.lockState = CursorLockMode.None ;
-            Debug.Log("O jogador morreu!");
-
-            FirstPersonalCamera cameraLook = FindAnyObjectByType<FirstPersonalCamera>();
+        FirstPersonalCamera cameraLook = FindAnyObjectByType<FirstPersonalCamera>();
             if (cameraLook != null)
             {
                 cameraLook.podeOlhar = false;
@@ -78,6 +76,13 @@ public class PlayerHealth : MonoBehaviour
             {
                 player.GetComponent<Player>().podeMover = false;
             }
+
+            if (telaFlash != null)
+            {
+            telaFlash.SetarMorto(true);
+            }
+
+        Debug.Log("O jogador morreu!");
     }
 
     void Update()

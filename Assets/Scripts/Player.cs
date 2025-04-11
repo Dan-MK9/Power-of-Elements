@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
     Vector3 strafe;
     Vector3 vertical;
 
-    float forwardSpeed = 6.5f;
-    float strafeSpeed = 6.5f;
+    private float forwardSpeed = 5f;
+    private float strafeSpeed = 5f;
 
     float gravity;
     float jumpSpeed;

@@ -1,22 +1,24 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ElementoAgua : MonoBehaviour
 {
     public int dano = 1;
-    public float danoDuration = 3f;
+    public float intervaloDano = 3f;
     public float slowDuration = 3f;
     public float slowMultiplier = 0.5f;
-    private PlayerHealth vida;
+
+    private Dictionary<GameObject, float> proximoTempoDeDano = new Dictionary<GameObject, float>();
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            PlayerHealth vida = other.GetComponent<PlayerHealth>();
             if (vida != null)
             {
                 vida.TomarDano(dano);
-                //StartCoroutine(Damage(vida));
             }
 
             Player movimento = other.GetComponent<Player>();
@@ -24,16 +26,39 @@ public class ElementoAgua : MonoBehaviour
             {
                 StartCoroutine(AplicarLentidao(movimento));
             }
+
+            if (!proximoTempoDeDano.ContainsKey(other.gameObject))
+            {
+                proximoTempoDeDano.Add(other.gameObject, Time.time + intervaloDano);
+            }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            PlayerHealth vida = other.GetComponent<PlayerHealth>();
+            if (vida != null && proximoTempoDeDano.ContainsKey(other.gameObject))
+            {
+                if (Time.time >= proximoTempoDeDano[other.gameObject])
+                {
+                    vida.TomarDano(dano);
+                    proximoTempoDeDano[other.gameObject] = Time.time + intervaloDano;
+                }
+            }
+        }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (proximoTempoDeDano.ContainsKey(other.gameObject))
+        {
+            proximoTempoDeDano.Remove(other.gameObject);
+        }
+    }
 
-    private System.Collections.IEnumerator AplicarLentidao(Player movimento)
+    private IEnumerator AplicarLentidao(Player movimento)
     {
         float velocidadeOriginal = movimento.velocidade;
         movimento.velocidade *= slowMultiplier;
@@ -42,21 +67,5 @@ public class ElementoAgua : MonoBehaviour
 
         movimento.velocidade = velocidadeOriginal;
     }
-
-    //private System.Collections.IEnumerator Damage(PlayerHealth damage)
-    //{
-    //    vida.TomarDano(1);
-    //    yield return new WaitForSeconds(danoDuration);
-
-    //}
-
-    void Start()
-    {
-        vida = GetComponent<PlayerHealth>();
-    }
-
-    void Update()
-    {
-        
-    }
 }
+

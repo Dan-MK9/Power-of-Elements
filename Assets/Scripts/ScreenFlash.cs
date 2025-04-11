@@ -8,9 +8,14 @@ public class ScreenFlash : MonoBehaviour
     public float flashDuration = 0.2f;
     public Color flashColor = new Color(1, 0, 0, 0.5f);
 
+    private bool estaMorto = false;
+
     public void Flash()
     {
-        StartCoroutine(FlashRoutine());
+        if (!estaMorto)
+        {
+            StartCoroutine(FlashRoutine());
+        }
     }
 
     IEnumerator FlashRoutine()
@@ -22,13 +27,14 @@ public class ScreenFlash : MonoBehaviour
         flashImage.color = new Color(1, 0, 0, 0);
     }
 
-    void Start()
+    public void SetarMorto(bool morto)
     {
-        
-    }
+        estaMorto = morto;
 
-    void Update()
-    {
-        
+        if (morto && flashImage != null)
+        {
+            flashImage.color = new Color(1, 0, 0, 0);
+        }
     }
 }
+
