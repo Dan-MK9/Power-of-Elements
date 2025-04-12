@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8b76e94f4294db842928c1d103f1afce, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2575451
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b76e94f4294db842928c1d103f1afce, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2575451
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b76e94f4294db842928c1d103f1afce, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2575451
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b76e94f4294db842928c1d103f1afce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -48,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b76e94f4294db842928c1d103f1afce, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 8b76e94f4294db842928c1d103f1afce, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -85,13 +101,13 @@ MonoBehaviour:
   rotateX: 0
   rotateY: 1
   rotateZ: 0
-  rotationSpeed: 85.67
+  rotationSpeed: 60
   isFloating: 1
   useEasingForFloating: 1
-  floatHeight: 1.93
-  floatSpeed: 0.4
+  floatHeight: 0.2
+  floatSpeed: 0.7
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: 1.2, y: 1.2, z: 1.2}
-  isScaling: 1
-  useEasingForScaling: 1
+  isScaling: 0
+  useEasingForScaling: 0
   scaleLerpSpeed: 1.11

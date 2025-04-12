@@ -15,8 +15,14 @@ public class ColetavelCristal : MonoBehaviour
             if (inventario != null)
             {
                 inventario.AdicionarCristal(valor);
-                Destroy(gameObject);
             }
+
+            if (efeitoColeta != null)
+            {
+                Instantiate(efeitoColeta, transform.position, Quaternion.identity);
+            }
+
+            Destroy(gameObject);
         }
     }
     void Start()

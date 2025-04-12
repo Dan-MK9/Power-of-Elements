@@ -6,10 +6,17 @@ public class PlayerInventario : MonoBehaviour
     public int cristais = 0;
     public TextMeshProUGUI textoCristais;
 
+    public Player player;
+
     public void AdicionarCristal(int valor)
     {
-        cristais += valor;
+        cristais ++;
         AtualizarHUD();
+
+        if (cristais == 5 && player != null)
+        {
+            player.DesbloquearPuloDuplo();
+        }
     }
 
     void AtualizarHUD()
