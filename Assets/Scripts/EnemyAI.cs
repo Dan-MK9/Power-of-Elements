@@ -3,8 +3,11 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    public float speed = 3f;
+    private NavMeshAgent agent;
+
     public float distanciaAtaque = 2f;
-    public float tempoEntreAtaques = 2f;
+    public float tempoEntreAtaques = 2.5f;
 
     private float proximoAtaque = 0f;
 
@@ -14,6 +17,9 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
+
         jogador = GameObject.FindGameObjectWithTag("Player");
         agente = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();

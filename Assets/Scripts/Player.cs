@@ -5,9 +5,7 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     //======================== MOVIMENTO ========================
-    public float velocidade = 5f;
-    private float forwardSpeed = 5f;
-    private float strafeSpeed = 5f;
+    public float velocidade = 6f;
 
     CharacterController controller;
     Vector3 forward, strafe, vertical;
