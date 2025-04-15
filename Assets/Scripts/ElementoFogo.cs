@@ -14,7 +14,7 @@ public class ElementoFogo : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //other.GetComponent<PlayerHealth>().TakeDamage(danoInicial);
+            other.GetComponent<PlayerHealth>().TomarDano(danoInicial);
             IsPlayerInFire = true;
 
             if (burnCoroutine != null)
@@ -38,11 +38,12 @@ public class ElementoFogo : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < duracaoDano)
         {
-            //PlayerHealth.TakeDamage(danoContinuo);
+            playerHealth.TomarDano(danoContinuo);
             elapsed += 0.5f;
             yield return new WaitForSeconds(0.5f);
         }
     }
+
     void Start()
     {
         
