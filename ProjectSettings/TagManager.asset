@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - Agua
   layers:
   - Default
   - TransparentFX

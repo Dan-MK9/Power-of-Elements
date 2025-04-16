@@ -31,6 +31,12 @@ public class PlayerHealth : MonoBehaviour
 
     public void TomarDano(float dano)
     {
+        if (estaInvencivel)
+        {
+            Debug.Log("Dano bloqueado");
+            return;
+        }
+
         Debug.Log("Tomou dano!");
         vidaAtual -= dano;
         vidaAtual = Mathf.Clamp(vidaAtual, 0f, vidaMax);
@@ -47,13 +53,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (cameraShake != null)
             cameraShake.Tremer();
-
-        if (estaInvencivel)
-        {
-            Debug.Log("Dano bloqueado");
-            return;
-        }
     }
+
 
     void AtualizarHUD()
     {
