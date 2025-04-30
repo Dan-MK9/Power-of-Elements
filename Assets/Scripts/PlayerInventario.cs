@@ -22,7 +22,7 @@ public class PlayerInventario : MonoBehaviour
     void AtualizarHUD()
     {
         if (textoCristais != null)
-            textoCristais.text = "Cristais coletados: 0/" + cristais;
+            textoCristais.text = "Cristais coletados: 5/" + cristais;
     }
 }
 

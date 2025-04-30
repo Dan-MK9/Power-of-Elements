@@ -10,21 +10,31 @@ public class ElementoAgua : MonoBehaviour
     public float slowMultiplier = 0.5f;
 
     private Dictionary<GameObject, float> proximoTempoDeDano = new Dictionary<GameObject, float>();
+    private HashSet<GameObject> jogadoresNaAgua = new HashSet<GameObject>();
+    private Dictionary<GameObject, Coroutine> corrotinasLentidao = new Dictionary<GameObject, Coroutine>();
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             PlayerHealth vida = other.GetComponent<PlayerHealth>();
+            Player movimento = other.GetComponent<Player>();
+
             if (vida != null)
             {
                 vida.TomarDano(dano);
             }
 
-            Player movimento = other.GetComponent<Player>();
-            if (movimento != null)
+            if (movimento != null && !jogadoresNaAgua.Contains(other.gameObject))
             {
-                StartCoroutine(AplicarLentidao(movimento));
+                jogadoresNaAgua.Add(other.gameObject);
+                movimento.velocidade *= slowMultiplier;
+
+                if (corrotinasLentidao.ContainsKey(other.gameObject))
+                {
+                    StopCoroutine(corrotinasLentidao[other.gameObject]);
+                    corrotinasLentidao.Remove(other.gameObject);
+                }
             }
 
             if (!proximoTempoDeDano.ContainsKey(other.gameObject))
@@ -52,20 +62,40 @@ public class ElementoAgua : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (proximoTempoDeDano.ContainsKey(other.gameObject))
+        if (other.CompareTag("Player"))
         {
-            proximoTempoDeDano.Remove(other.gameObject);
+            if (proximoTempoDeDano.ContainsKey(other.gameObject))
+            {
+                proximoTempoDeDano.Remove(other.gameObject);
+            }
+
+            if (jogadoresNaAgua.Contains(other.gameObject))
+            {
+                jogadoresNaAgua.Remove(other.gameObject);
+                Player movimento = other.GetComponent<Player>();
+
+                if (movimento != null)
+                {
+                    Coroutine c = StartCoroutine(RestaurarVelocidadeDepois(movimento, slowDuration));
+                    corrotinasLentidao[other.gameObject] = c;
+                }
+            }
         }
     }
 
-    private IEnumerator AplicarLentidao(Player movimento)
+    private IEnumerator RestaurarVelocidadeDepois(Player movimento, float delay)
     {
-        float velocidadeOriginal = movimento.velocidade;
-        movimento.velocidade *= slowMultiplier;
+        GameObject jogador = movimento.gameObject;
+        float velocidadeOriginal = movimento.velocidade / slowMultiplier;
 
-        yield return new WaitForSeconds(slowDuration);
+        yield return new WaitForSeconds(delay);
 
-        movimento.velocidade = velocidadeOriginal;
+        if (!jogadoresNaAgua.Contains(jogador))
+        {
+            movimento.velocidade = velocidadeOriginal;
+            corrotinasLentidao.Remove(jogador);
+        }
     }
 }
+
 
