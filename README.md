@@ -54,7 +54,6 @@ Neste jogo de plataforma 3D, o jogador deve explorar um cenário natural (Low Po
 
 - Praticar lógica de programação aplicada a jogos
 - Desenvolver e integrar múltiplos sistemas de gameplay e UI
-- Explorar efeitos visuais e sonoros para imersão do jogador
 
 ## 🏁 Status
 
