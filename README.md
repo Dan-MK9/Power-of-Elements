@@ -62,10 +62,4 @@ Projeto finalizado como parte da atividade prática.
 
 ---
 
-## 📷 Captura de Tela
-
-![Screenshot](./0ca4ca20-226d-47f2-8414-212ec774369b.png)
-
----
-
 *Projeto acadêmico - SENAI - Curso Técnico em Programação de Jogos Digitais*
